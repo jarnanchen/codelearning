@@ -10,4 +10,24 @@ function high(x) {
   return x[resIndex];
 }
 
-console.log(high("man i need a taxi up to ubud"));
+function formatDuration(seconds) {
+  // Complete this function
+  let year = Math.floor(seconds / 60 / 60 / 24 / 365);
+  year > 0 ? (seconds -= 60 * 60 * 24 * 365 * year) : null;
+  let day = Math.floor(seconds / 60 / 60 / 24);
+  day > 0 ? (seconds -= 60 * 60 * 24 * day) : null;
+  let hour = Math.floor(seconds / 60 / 60);
+  hour > 0 ? (seconds -= 60 * 60 * hour) : null;
+  let min = Math.floor(seconds / 60);
+  min > 0 ? (seconds -= 60 * min) : null;
+  let res = "";
+  let obj = {
+    year: year,
+    day: day,
+    hour: hour,
+    min: min,
+    seconds: seconds,
+  };
+}
+
+formatDuration(3600);
