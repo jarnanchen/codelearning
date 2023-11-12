@@ -20,14 +20,37 @@ function formatDuration(seconds) {
   hour > 0 ? (seconds -= 60 * 60 * hour) : null;
   let min = Math.floor(seconds / 60);
   min > 0 ? (seconds -= 60 * min) : null;
-  let res = "";
-  let obj = {
-    year: year,
-    day: day,
-    hour: hour,
-    min: min,
-    seconds: seconds,
-  };
+
+  let res = [
+    year + " year",
+    day + " day",
+    hour + " hour",
+    min + " minute",
+    seconds + " second",
+  ];
+
+  res = res.filter((e) => !e.startsWith(0));
+
+  if (res.length === 0) {
+    return "now";
+  }
+  res = res.map((e) => {
+    if (e.startsWith("1 ")) {
+      return e;
+    } else {
+      return e + "s";
+    }
+  });
+
+  for (let i = 0; i < res.length; i++) {
+    if (res.length - i > 2) {
+      res[i] += ", ";
+    } else if (res.length - i == 2) {
+      res[i] += " and ";
+    }
+  }
+
+  return res.join("");
 }
 
-formatDuration(3600);
+formatDuration(126241);
